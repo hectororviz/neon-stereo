@@ -1,0 +1,84 @@
+name: APK
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install platform + build-tools
+        run: sdkmanager "platforms;android-34" "build-tools;34.0.0" "platform-tools"
+
+      - name: Accept licenses
+        run: yes | sdkmanager --licenses > /dev/null
+
+      - name: Build debug + tests
+        run: ./gradlew :app:assembleDebug :app:testDebugUnitTest --console=plain
+
+      - name: Rename APKs
+        run: |
+          SHA=$(git rev-parse --short HEAD)
+          cp app/build/outputs/apk/debug/app-debug.apk neon-stereo-debug-$SHA.apk
+          ls -lh *.apk
+
+      - name: Upload artifact (every push)
+        uses: actions/upload-artifact@v4
+        with:
+          name: neon-stereo-debug
+          path: neon-stereo-debug-*.apk
+          retention-days: 90
+
+  rolling:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: neon-stereo-debug
+      - name: Rolling release "latest"
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Última compilación (main)
+          prerelease: true
+          files: neon-stereo-debug-*.apk
+          body: |
+            APK debug generado automáticamente con cada cambio en `main`.
+            Instalación: `adb install -r neon-stereo-debug-*.apk`
+            Ver `TEST_REPORT.md` del repo para la checklist de prueba en estéreo.
+
+  versioned:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: neon-stereo-debug
+      - name: Versioned release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: neon-stereo-debug-*.apk
+          body_path: TEST_REPORT.md

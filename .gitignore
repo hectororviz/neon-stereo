@@ -1,0 +1,15 @@
+# Android / Gradle
+local.properties
+.gradle/
+build/
+app/build/
+*.apk
+!gradle/wrapper/gradle-wrapper.jar
+# IDE
+.idea/
+*.iml
+.DS_Store
+# Keystores y secretos: nunca se suben
+*.jks
+*.keystore
+gradle.properties.local

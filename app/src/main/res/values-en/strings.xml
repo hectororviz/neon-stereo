@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Neon Stereo</string>
+    <string name="cd_cover">Album artwork</string>
+    <string name="cd_play">Play or pause</string>
+    <string name="cd_prev">Previous</string>
+    <string name="cd_next">Next</string>
+    <string name="settings_title">Settings</string>
+    <string name="design_tab">Design</string>
+    <string name="app_tab">Application</string>
+    <string name="diag_title">Diagnostics</string>
+    <string name="perm_title">Permissions wizard</string>
+    <string name="stopped_hint">stopped / session unavailable</string>
+    <string name="no_capture_hint">no audio capture — visualizers stopped</string>
+</resources>

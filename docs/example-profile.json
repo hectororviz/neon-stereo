@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "id": "ejemplo-nocturno",
+  "name": "Nocturno",
+  "refWidth": 1280,
+  "refHeight": 720,
+  "palette": [
+    "#00E5FF",
+    "#FF2BD6",
+    "#0A0A12"
+  ],
+  "backgroundHex": "#000000",
+  "extras": {},
+  "elements": [
+    {
+      "id": "bg1",
+      "type": "background",
+      "displayName": "Fondo",
+      "visible": true,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 1.0,
+      "height": 1.0,
+      "scale": 1.0,
+      "rotationDegrees": 0.0,
+      "opacity": 1.0,
+      "zIndex": -100,
+      "colorHex": "#000000",
+      "glow": 0.0,
+      "aspectRatioLocked": false,
+      "schemaVersion": 1,
+      "specific": {
+        "mode": "black",
+        "blur": 0.75,
+        "dim": 0.8,
+        "pulse": 0.5
+      }
+    },
+    {
+      "id": "clk1",
+      "type": "clock",
+      "displayName": "Reloj LED",
+      "visible": true,
+      "x": 0.3,
+      "y": 0.1,
+      "width": 0.4,
+      "height": 0.25,
+      "scale": 1.0,
+      "rotationDegrees": 0.0,
+      "opacity": 1.0,
+      "zIndex": 10,
+      "colorHex": "#00E5FF",
+      "glow": 0.6,
+      "aspectRatioLocked": false,
+      "schemaVersion": 1,
+      "specific": {
+        "font": "seven",
+        "h24": true,
+        "seconds": true,
+        "blink": true
+      }
+    },
+    {
+      "id": "sp1",
+      "type": "star_particles",
+      "displayName": "Estrellas",
+      "visible": true,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 1.0,
+      "height": 1.0,
+      "scale": 1.0,
+      "rotationDegrees": 0.0,
+      "opacity": 0.9,
+      "zIndex": 5,
+      "colorHex": "#FFFFFF",
+      "glow": 0.3,
+      "aspectRatioLocked": false,
+      "schemaVersion": 1,
+      "specific": {
+        "count": 150.0,
+        "band": "mid",
+        "sensitivity": 1.2
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Neon Stereo</string>
+    <string name="cd_cover">Portada del álbum</string>
+    <string name="cd_play">Reproducir o pausar</string>
+    <string name="cd_prev">Anterior</string>
+    <string name="cd_next">Siguiente</string>
+    <string name="settings_title">Configuración</string>
+    <string name="design_tab">Diseño</string>
+    <string name="app_tab">Aplicación</string>
+    <string name="diag_title">Diagnóstico</string>
+    <string name="perm_title">Asistente de permisos</string>
+    <string name="stopped_hint">detenida / sesión no disponible</string>
+    <string name="no_capture_hint">sin captura de audio — visualizadores detenidos</string>
+    <style name="Theme.NeonStereo" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:statusBarColor">@android:color/black</item>
+    </style>
+</resources>
